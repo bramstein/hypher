@@ -90,5 +90,23 @@ vows.describe('Hypher').addBatch({
 
         // en-dash
         'bootstrapping\u2013brainstorm': hyphenatesTo(['boot', 'strap', 'ping\u2013brain', 'storm']),
+    },
+    'hyphenate with exceptions': {
+        topic: function () {
+            var l = Object.create(language);
+            l.exceptions = 'bootstrapping, brainstorm';
+            return new hypher.Hypher(l);
+        },
+        'bootstrapping': hyphenatesTo(['bootstrapping']),
+        'brainstorm': hyphenatesTo(['brainstorm'])
+    },
+    'hyphenate with exceptions (without space)': {
+        topic: function () {
+            var l = Object.create(language);
+            l.exceptions = 'bootstrapping,brainstorm';
+            return new hypher.Hypher(l);
+        },
+        'bootstrapping': hyphenatesTo(['bootstrapping']),
+        'brainstorm': hyphenatesTo(['brainstorm'])
     }
 }).export(module);
