@@ -108,5 +108,14 @@ vows.describe('Hypher').addBatch({
         },
         'bootstrapping': hyphenatesTo(['bootstrapping']),
         'brainstorm': hyphenatesTo(['brainstorm'])
+    },
+    'hyphenate with custom points': {
+        topic: function () {
+            var l = Object.create(language);
+            l.exceptions = 'bo=otstr=apping, brai-nstorm';
+            return new hypher.Hypher(l);
+        },
+        'bootstrapping': hyphenatesTo(['bo', 'otstr', 'apping']),
+        'brainstorm': hyphenatesTo(['brai', 'nstorm'])
     }
 }).export(module);
