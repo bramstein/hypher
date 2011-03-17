@@ -37,8 +37,8 @@ The options may be empty or contain:
       // An array of compound separators (Optional, defaults to: hyphen, hyphen-minus, and en-dash)
       compoundSeparators: Array.<string>,
 
-      // The any character used in the pattern file (Optional, defaults to ".". Note that Hyphenator.js
-      // uses "_".)
+      // The any character used in the pattern file (Optional, defaults to "_". Note that Hyphenator.js
+      // uses "_", but many other pattern files use ".".)
       anyChar: <string>
     }
 
