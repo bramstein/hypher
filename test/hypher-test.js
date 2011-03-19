@@ -53,15 +53,15 @@ vows.describe('Hypher').addBatch({
         },
         'trie is correctly generated': function (h) {
             assert.deepEqual(h.trie, {
-                "a": {
+                97: {
                     _points: [0, 1],
-                    "b": {
+                    98: {
                         _points: [0, 2, 0]
                     }
                 },
-                "b": {
+                98: {
                     _points: [0, 2],
-                    "c": {
+                    99: {
                         _points: [0, 3, 0]
                     }
                 }
