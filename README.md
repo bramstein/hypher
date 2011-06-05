@@ -4,6 +4,7 @@ A small and fast JavaScript hyphenation engine compatible with Hyphenator.js lan
 
 ## Usage
 Simply create an instance of Hypher by giving it a language object and optionally an options object:
+
     var h = new Hypher(languageObject, options);
 
 You can then call the hyphenate method:
