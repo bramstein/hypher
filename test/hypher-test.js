@@ -64,7 +64,8 @@ vows.describe('Hypher').addBatch({
                     99: {
                         _points: [0, 3, 0]
                     }
-                }
+                },
+                _points: []
             });
         }
     },
