@@ -15,6 +15,7 @@ You can then call the hyphenate method:
 Note that an instance of the `Hypher` class should only be created once for each language object.
 
 Pattern files can contain:
+
     {
       // The minimum number of unhyphenated characters at the left of each word. (required)
       leftmin: <number>, 
@@ -31,6 +32,7 @@ Pattern files can contain:
     }
 
 The options may be empty or contain:
+
     {
       // The minimum length of a word to be considered for hyphenation. (Optional, defaults to 4)
       minLength: <number>,
