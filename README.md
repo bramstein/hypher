@@ -1,9 +1,9 @@
 # Hypher
 
-A small and fast JavaScript hyphenation engine compatible with Hyphenator.js language patterns.
+A small and fast JavaScript hyphenation engine compatible with Hyphenator.js language objects.
 
 ## Usage
-Simply create an instance of Hypher by giving it a language object and optionally an options object:
+Simply create an instance of Hypher by giving it a language object and (optionally) an options object:
 
     var h = new Hypher(languageObject, options);
 
@@ -14,7 +14,7 @@ You can then call the hyphenate method:
 
 Note that an instance of the `Hypher` class should only be created once for each language object.
 
-Pattern files can contain:
+The language object should contain:
 
     {
       // The minimum number of unhyphenated characters at the left of each word. (required)
@@ -31,7 +31,9 @@ Pattern files can contain:
       patterns: {}
     }
 
-The options may be empty or contain:
+Note that language objects are identical to the format used by Hyphenator.js. The only difference is how they are used. Hypher requires you  to manually pass a language object, whereas Hyphenator.js automatically "registers" a language object. Language objects can be found in the [Hyphenator.js source repository](http://code.google.com/p/hyphenator/source/browse/trunk#trunk%2Fpatterns).
+
+The options object may be empty or contain:
 
     {
       // The minimum length of a word to be considered for hyphenation. (Optional, defaults to 4)
