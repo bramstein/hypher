@@ -49,7 +49,7 @@ The options object may be empty or contain:
 
 The hyphenation engine can also be used from Node.js:
 
-    var hyphenation = new require('hypher'),
+    var hyphenation = require('hypher'),
         en_usHyphenator = new hyphenation.Hypher(pattern);
 
 ## License
