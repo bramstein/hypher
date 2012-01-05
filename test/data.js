@@ -1538,7 +1538,7 @@ exports.words = [
     "eval=u=a=tive",
     "evap=o=ra=tion",
     "even=hand=ed=ness",
-    "events",
+//    "events",
     "ev=er=glades",
     "ev=ery=thing",
     "ev=i=dences",
