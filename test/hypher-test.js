@@ -107,6 +107,14 @@ vows.describe('Hypher').addBatch({
         // ZWNJ
         'bootstrapping\u200Cbrainstorm-victories': hyphenatesTextTo(['boot', 'strap', 'ping\u200Cbrain', 'storm-vic', 'to', 'ries'])
     },
+    'hyphenate, preserve case and punctuation': {
+        topic: function () {
+            return new hypher.Hypher(language);
+        },
+        'Hyphenation': hyphenatesTo(['Hy', 'phen', 'ation']),
+        '!!!!!!!!': hyphenatesTo(['!!!!!!!!']),
+        'Hyphenation!': hyphenatesTo(['Hy', 'phen', 'ation!'])
+    },
     'hyphenate with exceptions': {
         topic: function () {
             var l = Object.create(language);
