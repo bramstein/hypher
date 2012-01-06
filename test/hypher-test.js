@@ -18,7 +18,19 @@ function hyphenate(word) {
     };
 }
 
-function hyphenatesTo(hyphenation, i) {
+function hyphenatesTextTo(hyphenation) {
+    var context = {
+        topic: function (h) {
+            return h.hyphenateText(this.context.name).split('\u00AD');
+        }
+    };
+
+    context['Should hyphenate to: ' + hyphenation.join('\u2022')] = assertHyphenation(hyphenation);
+
+    return context;
+}
+
+function hyphenatesTo(hyphenation) {
     var context = {
         topic: function (h) {
             return h.hyphenate(this.context.name);
@@ -75,22 +87,25 @@ vows.describe('Hypher').addBatch({
         },
         'hyph\u00ADen': hyphenatesTo(['hyph\u00ADen'])
     },
-    'hyphenate with en-dash, hyphen-minus or hyphen': {
+    'hyphenate with en-dash, hyphen-minus, hyphen, or ZWNJ': {
         topic: function () {
             return new hypher.Hypher(language);
         },
         // The resulting hyphenation might look odd, but a minus-hyphen, en-dash, or hyphen will
         // be broken by the browser, so we don't need to insert a soft hyphen in that position.
-        'bootstrapping-brainstorm': hyphenatesTo(['boot', 'strap', 'ping-brain', 'storm']),
+        'bootstrapping-brainstorm-victories': hyphenatesTextTo(['boot', 'strap', 'ping-brain', 'storm-vic', 'to', 'ries']),
 
         // hyphen-minus
-        'bootstrapping\u002Dbrainstorm': hyphenatesTo(['boot', 'strap', 'ping\u002Dbrain', 'storm']),
+        'bootstrapping\u002Dbrainstorm-victories': hyphenatesTextTo(['boot', 'strap', 'ping\u002Dbrain', 'storm-vic', 'to', 'ries']),
 
         // hyphen
-        'bootstrapping\u2010brainstorm': hyphenatesTo(['boot', 'strap', 'ping\u2010brain', 'storm']),
+        'bootstrapping\u2010brainstorm-victories': hyphenatesTextTo(['boot', 'strap', 'ping\u2010brain', 'storm-vic', 'to', 'ries']),
 
         // en-dash
-        'bootstrapping\u2013brainstorm': hyphenatesTo(['boot', 'strap', 'ping\u2013brain', 'storm']),
+        'bootstrapping\u2013brainstorm-victories': hyphenatesTextTo(['boot', 'strap', 'ping\u2013brain', 'storm-vic', 'to', 'ries']),
+
+        // ZWNJ
+        'bootstrapping\u200Cbrainstorm-victories': hyphenatesTextTo(['boot', 'strap', 'ping\u200Cbrain', 'storm-vic', 'to', 'ries'])
     },
     'hyphenate with exceptions': {
         topic: function () {
