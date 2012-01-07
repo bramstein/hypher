@@ -3,7 +3,8 @@
 // Yannis Haralambous, Kostis Dryllerakis and Claudio Beccari.
 ﻿// From http://tug.org/svn/texhyphen/branches/ptex/hyph-utf8/tex/generic/hyph-utf8/patterns/tex/hyph-el-polyton.tex
 // Converted by Pablo Rodríguez (hyphenator at pragmata dot tk)
-Hyphenator.languages['el-polyton'] = {
+module.exports = {
+	id: 'el-polyton',
 	leftmin : 2,
 	rightmin : 2,
 	specialChars : "αεηιουωϊϋἀἁἂἃἄἅἆἇἐἑἒἓἔἕἠἡἢἣἤἥἦἧἰἱἲἳἴἵἶἷὀὁὂὃὄὅὐὑὒὓὔὕὖὗὠὡὢὣὤὥὦὧὰὲὴὶὸὺὼᾀᾁᾂᾃᾄᾅᾆᾇᾐᾑᾒᾓᾔᾕᾖᾗᾠᾡᾢᾣᾤᾥᾦᾧᾲᾳᾴᾶᾷῂῃῄῆῇῒῖῗῢῦῧῲῳῴῶῷάέήίόύώΐΰάέήίόύώΐΰβγκδζθλμπντξρσϲςφχψ'ʼ᾿’᾽ῤῥ",

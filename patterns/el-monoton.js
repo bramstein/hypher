@@ -4,7 +4,7 @@
 ﻿// From http://tug.org/svn/texhyphen/branches/ptex/hyph-utf8/tex/generic/hyph-utf8/patterns/tex/hyph-el-monoton.tex
 // Converted by Pablo Rodríguez (hyphenator at pragmata dot tk)
 module.exports = {
-	id: 'el-monoton, el',
+	id: ['el-monoton', 'el'],
 	leftmin : 2,
 	rightmin : 2,
 	patterns : {
