@@ -55,7 +55,7 @@ The hyphenation engine can also be used from Node.js:
         en_usHyphenator = new hyphenation.Hypher(pattern);
 
 ## License
-Licensed under the three clause BSD license (see BSD.txt.)
+Hypher is licensed under the three clause BSD license (see BSD.txt.) The hyphenation language patterns are licensed under the LGPL (unless otherwise noted) and copyrighted to their respective creators and maintainers. 
 
 ## See also
 [Hyphenator.js](http://code.google.com/p/hyphenator/)
