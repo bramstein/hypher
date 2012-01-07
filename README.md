@@ -1,6 +1,6 @@
 # Hypher
 
-A small and fast JavaScript hyphenation engine compatible with Hyphenator.js language objects.
+A small and fast JavaScript hyphenation engine compatible with Hyphenator.js language objects. Can be used in Node.js and the browser.
 
 ## Usage
 Simply create an instance of Hypher by giving it a language object and (optionally) an options object:
@@ -36,7 +36,7 @@ The language object should contain:
       patterns: {}
     }
 
-Note that language objects are identical to the format used by [Hyphenator.js](http://code.google.com/p/hyphenator/). The only difference is how they are used. Hypher requires you  to manually pass a language object, whereas Hyphenator.js automatically "registers" a language object. Language objects can be found in the [Hyphenator.js source repository](http://code.google.com/p/hyphenator/source/browse/trunk#trunk%2Fpatterns).
+Note that language objects are identical to the format used by [Hyphenator.js](http://code.google.com/p/hyphenator/). The only difference is how they are used. Hypher requires you  to manually pass a language object, whereas Hyphenator.js automatically "registers" a language object. Language objects can be found in the `patterns` directory.
 
 The options object may be empty or contain:
 
@@ -51,8 +51,10 @@ The options object may be empty or contain:
 
 The hyphenation engine can also be used from Node.js:
 
-    var hyphenation = require('hypher'),
-        en_usHyphenator = new hyphenation.Hypher(pattern);
+    var hypher = require('hypher'),
+        h = new hypher.Hypher(hypher.languages.en);
+
+    h.hyphenate('hyphenation');
 
 ## License
 Hypher is licensed under the three clause BSD license (see BSD.txt.) The hyphenation language patterns are licensed under the LGPL (unless otherwise noted) and copyrighted to their respective creators and maintainers. 
