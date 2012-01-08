@@ -1,16 +1,21 @@
 # Hypher
 
-A small and fast JavaScript hyphenation engine compatible with Hyphenator.js language objects. Can be used in Node.js and the browser.
+A small and fast JavaScript hyphenation engine compatible with Hyphenator.js language objects. Can be used in Node.js and as a jQuery plugin.
 
-## Usage
-Simply create an instance of Hypher by giving it a language object and (optionally) an options object:
+## Node.js
+Hypher can be installed from NPM:
 
-    var h = new Hypher(languageObject, options);
+    npm install hypher
 
-You can then call the `hyphenate` method to hyphenate a single word:
+You can then use it in your program by creating an instance of `Hypher` and giving it a language object and (optionally) an options object:
+
+    var hypher = require('hypher'),
+        h = new hypher.Hypher(hypher.languages.en);
 
     // returns ['hy', 'phen', 'ation']
     h.hyphenate('hyphenation');
+
+The `hypher` module contains two items `Hypher` and `languages`. `Hypher` is the hyphenation engine and `languages` is an object containing all the language patterns. See `examples/node/hyphenation.js` for a full example on how to use Hypher.
 
 The `hyphenate` method does not support hyphenated compound words. These should be split into individual words before being passed to the hyphenation engine and reassembled afterwards by the caller. You can also use the `hyphenateText` method to hyphenate a string of text. The `hyphenateText` method *does* support compound words and returns a string with inserted soft hyphens (`\u00AD`.)
 
@@ -29,16 +34,16 @@ The language object should contain:
       rightmin: <number>,
 
       // A comma separated list of hyphenation exceptions. Custom hyphenations
-      // can be specified using '=' as hyphenation character. (Optional)
+      // can be specified using '=' or '-' as hyphenation character. (Optional)
       exceptions: <string>,
 
       // A patterns object (required)
       patterns: {}
     }
 
-Note that language objects are identical to the format used by [Hyphenator.js](http://code.google.com/p/hyphenator/). The only difference is how they are used. Hypher requires you  to manually pass a language object, whereas Hyphenator.js automatically "registers" a language object. Language objects can be found in the `patterns` directory.
+Language objects are identical to the format used by [Hyphenator.js](http://code.google.com/p/hyphenator/). The only difference is how they are used. Hypher requires you to manually pass a language object, whereas Hyphenator.js automatically "registers" a language object. Language objects can be found in the `patterns` directory.
 
-The options object may be empty or contain:
+The options object may be `null` or contain:
 
     {
       // The minimum length of a word to be considered for hyphenation. (Optional, defaults to 4)
@@ -49,12 +54,30 @@ The options object may be empty or contain:
       anyChar: <string>
     }
 
-The hyphenation engine can also be used from Node.js:
+##jQuery
 
-    var hypher = require('hypher'),
-        h = new hypher.Hypher(hypher.languages.en);
+To use the jQuery plugin include `dist/jquery.hypher.js` in your HTML document together with any number of language pattern files from `dist/patterns`. It is important that you include `jquery.hypher.js` before any language pattern files.
 
-    h.hyphenate('hyphenation');
+    <script src="jquery.hypher.js"></script>
+    <script src="en-us.js"></script>
+
+This will extend jQuery with a `hyphenate` method. Given the following HTML:
+
+   <p>Hyphenation is <em>important</em></p>
+
+You can hyphenate the text content of the `p` element like so:
+
+   $('p').hyphenate('en-us');
+
+The `hyphenate` method only works on the text content of the elements it is called on, so in the above example the word "important" will not be hyphenated. To also include the text content of the `em` element, simply include it in your selector:
+
+   $('p, em').hyphenate('en-us');
+
+This naturally also applies to your own classes:
+
+   $('p.hyphenate, em, a').hyphenate('en-us');
+
+This will hyphenate only `p` with class `hyphenate` and `em` and `a` elements.
 
 ## License
 Hypher is licensed under the three clause BSD license (see BSD.txt.) The hyphenation language patterns are licensed under the LGPL (unless otherwise noted) and copyrighted to their respective creators and maintainers. 
