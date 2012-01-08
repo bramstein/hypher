@@ -63,19 +63,19 @@ To use the jQuery plugin include `dist/jquery.hypher.js` in your HTML document t
 
 This will extend jQuery with a `hyphenate` method. Given the following HTML:
 
-   <p>Hyphenation is <em>important</em></p>
+    <p>Hyphenation is <em>important</em></p>
 
 You can hyphenate the text content of the `p` element like so:
 
-   $('p').hyphenate('en-us');
+    $('p').hyphenate('en-us');
 
 The `hyphenate` method only works on the text content of the elements it is called on, so in the above example the word "important" will not be hyphenated. To also include the text content of the `em` element, simply include it in your selector:
 
-   $('p, em').hyphenate('en-us');
+    $('p, em').hyphenate('en-us');
 
 This naturally also applies to your own classes:
 
-   $('p.hyphenate, em, a').hyphenate('en-us');
+    $('p.hyphenate, em, a').hyphenate('en-us');
 
 This will hyphenate only `p` with class `hyphenate` and `em` and `a` elements.
 
