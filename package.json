@@ -7,9 +7,6 @@
         "microtime": "=0.1.3",
         "benchmark": "=0.1.347"
     },
-    "engines": {
-        "node": ">=0.4.3"
-    },
     "directories": {
         "lib": "./lib"
     },
