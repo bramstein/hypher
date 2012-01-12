@@ -14,5 +14,7 @@
     },
     "scripts": {
         "test": "vows"
-    }
+    },
+    "main": "./lib/index.js",
+    "ender": "./lib/ender.js"
 }
