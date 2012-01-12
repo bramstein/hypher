@@ -1,7 +1,7 @@
 var Benchmark = require('benchmark'),
-    hypher = require('../lib/hypher.js'),
+    Hypher = require('../lib/hypher'),
     suite = new Benchmark.Suite('warm cache'),
-    data = require('./data.js'),
+    data = require('./data'),
     words = data.words,
     language = data.language,
     assert = require('assert'),
@@ -34,7 +34,7 @@ function hypherDictionary() {
 }
 
 function hypherSetup() {
-    h = new hypher.Hypher(language);
+    h = new Hypher(language);
 }
 
 function hyphenatorDictionary() {

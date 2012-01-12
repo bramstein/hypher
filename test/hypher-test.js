@@ -1,4 +1,4 @@
-var hypher = require('../lib/hypher.js'),
+var Hypher = require('../lib/hypher'),
     vows = require('vows'),
     assert = require('assert'),
     data = require('./data.js'),
@@ -50,13 +50,13 @@ words.forEach(function (word) {
 vows.describe('Hypher').addBatch({
     'hyphenate ': {
         topic: function () {
-            return new hypher.Hypher(language);
+            return new Hypher(language);
         },
         'word: ': dictionary
     },
     'trie': {
         topic: function () {
-            return new hypher.Hypher({
+            return new Hypher({
                 patterns: {
                     "2": "a1b2",
                     "3": "a2bb3c"
@@ -83,13 +83,13 @@ vows.describe('Hypher').addBatch({
     },
     'hyphenate with soft hyphens': {
         topic: function () {
-            return new hypher.Hypher(language);
+            return new Hypher(language);
         },
         'hyph\u00ADen': hyphenatesTo(['hyph\u00ADen'])
     },
     'hyphenate with en-dash, hyphen-minus, hyphen, or ZWNJ': {
         topic: function () {
-            return new hypher.Hypher(language);
+            return new Hypher(language);
         },
         // The resulting hyphenation might look odd, but a minus-hyphen, en-dash, or hyphen will
         // be broken by the browser, so we don't need to insert a soft hyphen in that position.
@@ -109,7 +109,7 @@ vows.describe('Hypher').addBatch({
     },
     'hyphenate, preserve case and punctuation': {
         topic: function () {
-            return new hypher.Hypher(language);
+            return new Hypher(language);
         },
         'Hyphenation': hyphenatesTo(['Hy', 'phen', 'ation']),
         '!!!!!!!!': hyphenatesTo(['!!!!!!!!']),
@@ -119,7 +119,7 @@ vows.describe('Hypher').addBatch({
         topic: function () {
             var l = Object.create(language);
             l.exceptions = 'bootstrapping, brainstorm';
-            return new hypher.Hypher(l);
+            return new Hypher(l);
         },
         'bootstrapping': hyphenatesTo(['bootstrapping']),
         'brainstorm': hyphenatesTo(['brainstorm'])
@@ -128,7 +128,7 @@ vows.describe('Hypher').addBatch({
         topic: function () {
             var l = Object.create(language);
             l.exceptions = 'bootstrapping,brainstorm';
-            return new hypher.Hypher(l);
+            return new Hypher(l);
         },
         'bootstrapping': hyphenatesTo(['bootstrapping']),
         'brainstorm': hyphenatesTo(['brainstorm'])
@@ -137,7 +137,7 @@ vows.describe('Hypher').addBatch({
         topic: function () {
             var l = Object.create(language);
             l.exceptions = 'bo=otstr=apping, brai-nstorm';
-            return new hypher.Hypher(l);
+            return new Hypher(l);
         },
         'bootstrapping': hyphenatesTo(['bo', 'otstr', 'apping']),
         'brainstorm': hyphenatesTo(['brai', 'nstorm'])
