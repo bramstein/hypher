@@ -5,19 +5,18 @@ A small and fast JavaScript hyphenation engine compatible with Hyphenator.js lan
 ## Node.js
 Hypher can be installed from NPM:
 
-    npm install hypher
+    npm install hypher hyphenation.en-us
 
 You can then use it in your program by creating an instance of `Hypher` and giving it a language object and (optionally) an options object:
 
-    var hypher = require('hypher'),
-        h = new hypher.Hypher(hypher.languages.en);
+    var Hypher = require('hypher'),
+        english = require('hyphenation.en-us'),
+        h = new Hypher(english);
 
     // returns ['hy', 'phen', 'ation']
     h.hyphenate('hyphenation');
 
-The `hypher` module contains two items `Hypher` and `languages`. `Hypher` is the hyphenation engine and `languages` is an object containing all the language patterns. See `examples/node/hyphenation.js` for a full example on how to use Hypher.
-
-The `hyphenate` method does not support hyphenated compound words. These should be split into individual words before being passed to the hyphenation engine and reassembled afterwards by the caller. You can also use the `hyphenateText` method to hyphenate a string of text. The `hyphenateText` method *does* support compound words and returns a string with inserted soft hyphens (`\u00AD`.)
+See `examples/node/` for a full example on how to use Hypher. The `hyphenate` method does not support hyphenated compound words. These should be split into individual words before being passed to the hyphenation engine and reassembled afterwards by the caller. You can also use the `hyphenateText` method to hyphenate a string of text. The `hyphenateText` method *does* support compound words and returns a string with inserted soft hyphens (`\u00AD`.)
 
     // returns 'Hy|phen|ation is use|ful when cen|ter jus|ti|fy|ing a text.' where `|` is a soft hyphen
     h.hyphenateText('Hyphenation is useful when center justifying a text.');
@@ -41,7 +40,7 @@ The language object should contain:
       patterns: {}
     }
 
-Language objects are identical to the format used by [Hyphenator.js](http://code.google.com/p/hyphenator/). The only difference is how they are used. Hypher requires you to manually pass a language object, whereas Hyphenator.js automatically "registers" a language object. Language objects can be found in the `patterns` directory.
+Language objects are identical to the format used by [Hyphenator.js](http://code.google.com/p/hyphenator/). The only difference is how they are used. Hypher requires you to manually pass a language object, whereas Hyphenator.js automatically "registers" a language object. Language objects can be found in the [patterns repository](https://github.com/bramstein/hyphenation-patterns).
 
 The options object may be `null` or contain:
 
@@ -56,7 +55,7 @@ The options object may be `null` or contain:
 
 ##jQuery
 
-To use the jQuery plugin include `dist/jquery.hypher.js` in your HTML document together with any number of language pattern files from `dist/patterns`. It is important that you include `jquery.hypher.js` before any language pattern files.
+To use the jQuery plugin include `dist/jquery.hypher.js` in your HTML document together with any number of language pattern files from the `dist/browser` directory in the [patterns repository](https://github.com/bramstein/hyphenation-patterns). It is important that you include `jquery.hypher.js` before any language pattern files.
 
     <script src="jquery.hypher.js"></script>
     <script src="en-us.js"></script>
@@ -80,7 +79,8 @@ This naturally also applies to your own classes:
 This will hyphenate only `p` with class `hyphenate` and `em` and `a` elements.
 
 ## License
-Hypher is licensed under the three clause BSD license (see BSD.txt.) The hyphenation language patterns are licensed under the LGPL (unless otherwise noted) and copyrighted to their respective creators and maintainers. 
+Hypher is licensed under the three clause BSD license (see BSD.txt.)
 
 ## See also
-[Hyphenator.js](http://code.google.com/p/hyphenator/)
+* [Hyphenation patterns for use with Hypher](https://github.com/bramstein/hyphenation-patterns)
+* [Hyphenator.js](http://code.google.com/p/hyphenator/)
