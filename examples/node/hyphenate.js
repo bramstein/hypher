@@ -1,7 +1,7 @@
 // Usage: node hyphenate.js [word] ...
-var hypher = require('../../lib/index'),
-    en = hypher.languages['en'],
-    h = new hypher.Hypher(en),
+var Hypher = require('hypher'),
+    pattern = require('hyphenation.en-us'),
+    h = new Hypher(pattern),
     words = process.argv.filter(function (_, i) {
         return i > 1;
     }),

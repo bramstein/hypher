@@ -18,6 +18,6 @@
         "url": "git://github.com/bramstein/Hypher.git"
     },
     "keywords": ["hyphenation", "hypher", "hypher.js", "ender", "jquery"],
-    "main": "./lib/index.js",
+    "main": "./lib/hypher.js",
     "ender": "./lib/ender.js"
 }
