@@ -78,6 +78,21 @@ This naturally also applies to your own classes:
 
 This will hyphenate only `p` with class `hyphenate` and `em` and `a` elements.
 
+## Ender
+
+Assuming you have [Ender](http://ender.no.de/) installed you can either add Hypher and a hyphenation pattern to your library by using the command line `ender build hypher hyphenation.en-us`, or include them in your dependencies in your `package.json`:
+
+    "dependencies": {
+      "hypher": "*",
+      "hyphenation.en-us": "*"
+    }
+
+and build your library as usual with `ender build .`. Then---as in jQuery---hyphenate the selected elements:
+
+   $('p').hyphenate('en-us');
+
+The `examples/ender/` directory contains an example project using Ender and Hypher.
+
 ## License
 Hypher is licensed under the three clause BSD license (see BSD.txt.)
 
