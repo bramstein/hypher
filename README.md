@@ -89,7 +89,7 @@ Assuming you have [Ender](http://ender.no.de/) installed you can either add Hyph
 
 and build your library as usual with `ender build .`. Then---as in jQuery---hyphenate the selected elements:
 
-   $('p').hyphenate('en-us');
+    $('p').hyphenate('en-us');
 
 The `examples/ender/` directory contains an example project using Ender and Hypher.
 
