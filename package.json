@@ -1,6 +1,6 @@
 {
     "name": "hypher",
-    "version": "0.1.4",
+    "version": "0.1.5",
     "author": "Bram Stein <b.l.stein@gmail.com> (http://www.bramstein.com)",
     "devDependencies": {
         "vows": ">=0.5.6",
