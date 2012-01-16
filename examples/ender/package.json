@@ -1,0 +1,10 @@
+{
+    "name": "hypher-ender",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "jeesh": "*",
+        "hypher": "*",
+        "hyphenation.en-us": "*"
+    }
+}
