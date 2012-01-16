@@ -187,10 +187,8 @@ Hypher.prototype.hyphenate = function (word) {
     return result;
 };
 
-// Export Hypher for Node.js
-module.exports = {
-    Hypher: Hypher
-};window['Hypher'] = module.exports.Hypher;
+module.exports = Hypher;
+window['Hypher'] = module.exports;
 
 window['Hypher']['languages'] = {};
 }());(function ($) {
