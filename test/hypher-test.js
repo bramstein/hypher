@@ -18,18 +18,6 @@ function hyphenate(word) {
     };
 }
 
-function hyphenatesUrlTo(hyphenation) {
-    var context = {
-        topic: function (h) {
-            return h.hyphenateUrl(this.context.name).split('\u200B');
-        }
-    };
-
-    context['Should hyphenate to: ' + hyphenation.join('\u2022')] = assertHyphenation(hyphenation);
-
-    return context;
-}
-
 function hyphenatesTextTo(hyphenation) {
     var context = {
         topic: function (h) {
