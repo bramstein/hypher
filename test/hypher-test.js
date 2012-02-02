@@ -18,6 +18,18 @@ function hyphenate(word) {
     };
 }
 
+function hyphenatesUrlTo(hyphenation) {
+    var context = {
+        topic: function (h) {
+            return h.hyphenateUrl(this.context.name).split('\u200B');
+        }
+    };
+
+    context['Should hyphenate to: ' + hyphenation.join('\u2022')] = assertHyphenation(hyphenation);
+
+    return context;
+}
+
 function hyphenatesTextTo(hyphenation) {
     var context = {
         topic: function (h) {
@@ -141,5 +153,15 @@ vows.describe('Hypher').addBatch({
         },
         'bootstrapping': hyphenatesTo(['bo', 'otstr', 'apping']),
         'brainstorm': hyphenatesTo(['brai', 'nstorm'])
+    },
+    'hyphenate path like strings': {
+        topic: function () {
+            return new Hypher(language);
+        },
+        'http://www.example.com/': hyphenatesUrlTo(['http://', 'www.example.com/']),
+        'http://www.example.com/some/file.txt': hyphenatesUrlTo(['http://', 'www.example.com/', 'some/', 'file.txt']),
+        'some/path/to/somewhere': hyphenatesUrlTo(['some/', 'path/', 'to/', 'somewhere']),
+        '1234567/7654321': hyphenatesUrlTo(['1234567/', '7654321']),
+        '/root/for/some/path': hyphenatesUrlTo(['/root/', 'for/', 'some/', 'path'])
     }
 }).export(module);
