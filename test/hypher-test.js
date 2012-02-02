@@ -158,10 +158,12 @@ vows.describe('Hypher').addBatch({
         topic: function () {
             return new Hypher(language);
         },
-        'http://www.example.com/': hyphenatesUrlTo(['http://', 'www.example.com/']),
-        'http://www.example.com/some/file.txt': hyphenatesUrlTo(['http://', 'www.example.com/', 'some/', 'file.txt']),
-        'some/path/to/somewhere': hyphenatesUrlTo(['some/', 'path/', 'to/', 'somewhere']),
-        '1234567/7654321': hyphenatesUrlTo(['1234567/', '7654321']),
-        '/root/for/some/path': hyphenatesUrlTo(['/root/', 'for/', 'some/', 'path'])
+        'http://www.ex.com/': hyphenatesTextTo(['http://\u200Bwww.ex.com/']),
+        'http://www.ex.com/some/file.txt': hyphenatesTextTo(['http://\u200Bwww.ex.com/\u200Bsome/\u200Bfile.txt']),
+        'some/path/to/some/where': hyphenatesTextTo(['some/\u200Bpath/\u200Bto/\u200Bsome/\u200Bwhere']),
+        '1234567/7654321': hyphenatesTextTo(['1234567/\u200B7654321']),
+        '/root/for/some/path': hyphenatesTextTo(['/root/\u200Bfor/\u200Bsome/\u200Bpath']),
+        'a text with a /path/in/it/': hyphenatesTextTo(['a text with a /path/\u200Bin/\u200Bit/']),
+        'a text with a /path/in/it/ and more text': hyphenatesTextTo(['a text with a /path/\u200Bin/\u200Bit/ and more text'])
     }
 }).export(module);
