@@ -7,7 +7,7 @@ Hypher can be installed from NPM:
 
     npm install hypher hyphenation.en-us
 
-You can then use it in your program by creating an instance of `Hypher` and giving it a language object and (optionally) an options object:
+You can then use it in your program by creating an instance of `Hypher` and giving it a language object:
 
     var Hypher = require('hypher'),
         english = require('hyphenation.en-us'),
@@ -21,7 +21,7 @@ See `examples/node/` for a full example on how to use Hypher. The `hyphenate` me
     // returns 'Hy|phen|ation is use|ful when cen|ter jus|ti|fy|ing a text.' where `|` is a soft hyphen
     h.hyphenateText('Hyphenation is useful when center justifying a text.');
 
-Note that an instance of the `Hypher` class should only be created once for each language object.
+The `hyphenateText` method takes an optional second parameter `minLength` which is the minimum length a word should have to be considerd for hyphenation (defaults to 4.) Note that an instance of the `Hypher` class should only be created once for each language object.
 
 The language object should contain:
 
@@ -41,17 +41,6 @@ The language object should contain:
     }
 
 Language objects are identical to the format used by [Hyphenator.js](http://code.google.com/p/hyphenator/). The only difference is how they are used. Hypher requires you to manually pass a language object, whereas Hyphenator.js automatically "registers" a language object. Language objects can be found in the [patterns repository](https://github.com/bramstein/hyphenation-patterns).
-
-The options object may be `null` or contain:
-
-    {
-      // The minimum length of a word to be considered for hyphenation. (Optional, defaults to 4)
-      minLength: <number>,
-
-      // The any character used in the pattern file (Optional, defaults to "_". Note that Hyphenator.js
-      // uses "_", but many other pattern files use ".".)
-      anyChar: <string>
-    }
 
 ##jQuery
 
