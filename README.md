@@ -1,6 +1,6 @@
 # Hypher
 
-A small and fast JavaScript hyphenation engine compatible with Hyphenator.js language objects. Can be used in Node.js and as a jQuery plugin.
+A small and fast JavaScript hyphenation engine. Can be used in Node.js and as a jQuery plugin.
 
 ## Node.js
 Hypher can be installed from NPM:
@@ -33,7 +33,7 @@ The language object should contain:
       rightmin: <number>,
 
       // A comma separated list of hyphenation exceptions. Custom hyphenations
-      // can be specified using '=' or '-' as hyphenation character. (Optional)
+      // can be specified using '-' as hyphenation character. (Optional)
       exceptions: <string>,
 
       // A patterns object (required)
