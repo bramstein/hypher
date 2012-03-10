@@ -43,7 +43,7 @@ function hyphenatesTo(hyphenation) {
 }
 
 words.forEach(function (word) {
-    var w = word.split('=');
+    var w = word.split('-');
     dictionary[w.join('')] = hyphenatesTo(w);
 });
 
@@ -136,7 +136,7 @@ vows.describe('Hypher').addBatch({
     'hyphenate with custom points': {
         topic: function () {
             var l = Object.create(language);
-            l.exceptions = 'bo=otstr=apping, brai-nstorm';
+            l.exceptions = 'bo-otstr-apping, brai-nstorm';
             return new Hypher(l);
         },
         'bootstrapping': hyphenatesTo(['bo', 'otstr', 'apping']),
