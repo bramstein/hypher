@@ -1,4 +1,4 @@
-# Hypher
+## Hypher
 
 A small and fast JavaScript hyphenation engine. Can be used in Node.js and as a jQuery plugin.
 
