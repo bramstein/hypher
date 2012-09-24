@@ -6,7 +6,7 @@ var Hypher = require('hypher'),
         return i > 1;
     }),
     output = words.map(function (v) {
-        return h.hyphenate(v).join('\u2022');
+        return h.hyphenate(v).join('\u2027');
     });
     
 console.log(output.join(' '));
