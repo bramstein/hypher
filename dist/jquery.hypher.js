@@ -6,10 +6,10 @@ var module = {
 /**
  * @constructor
  * @param {!{patterns: !Object, leftmin: !number, rightmin: !number}} language The language pattern file. Compatible with Hyphenator.js.
- * @param {?Object=} options Options to alter Hypher's hyphenation behaviour.
  */
-function Hypher(language, options) {
-
+function Hypher(language) {
+    var exceptions = [],
+        i = 0;
     /**
      * @type {!Hypher.TrieNode}
      */
@@ -28,27 +28,16 @@ function Hypher(language, options) {
     this.rightMin = language['rightmin'];
 
     /**
-     * @type {!number}
-     * @const
-     */
-    this.minLength = (options && options['minLength']) || 4;
-
-    /**
-     * @type {!string}
-     * @const
-     */
-    this.anyChar = (options && options['anyChar']) || '_';
-
-    /**
      * @type {!Object.<string, !Array.<string>>}
      */
     this.exceptions = {};
 
     if (language['exceptions']) {
-        language['exceptions'].split(/,\s?/g).forEach(function (exception) {
-            var hyphenationMarker = new RegExp(exception.indexOf('=') !== -1 ? '=' : '-', 'g');
-            this.exceptions[exception.replace(hyphenationMarker, '')] = exception.split(hyphenationMarker);
-        }, this);
+        exceptions = language['exceptions'].split(/,\s?/g);
+
+        for (; i < exceptions.length; i += 1) {
+            this.exceptions[exceptions[i].replace(/-/g, '')] = exceptions[i].split('-');
+        }
     }
 }
 
@@ -65,6 +54,13 @@ Hypher.TrieNode;
  */
 Hypher.prototype.createTrie = function (patternObject) {
     var size = 0,
+        i = 0,
+        c = 0,
+        p = 0,
+        chars = null,
+        points = null,
+        codePoint = null,
+        t = null,
         tree = {
             _points: []
         },
@@ -74,24 +70,26 @@ Hypher.prototype.createTrie = function (patternObject) {
         if (patternObject.hasOwnProperty(size)) {
             patterns = patternObject[size].match(new RegExp('.{1,' + (+size) + '}', 'g'));
 
-            patterns.forEach(function (pattern) {
-                var chars = pattern.replace(/[0-9]/g, '').split(''),
-                    points = pattern.split(/\D/),
-                    t = tree;
+            for (i = 0; i < patterns.length; i += 1) {
+                chars = patterns[i].replace(/[0-9]/g, '').split('');
+                points = patterns[i].split(/\D/);
+                t = tree;
 
-                chars.forEach(function (c) {
-                    var codePoint = c.charCodeAt(0);
+                for (c = 0; c < chars.length; c += 1) {
+                    codePoint = chars[c].charCodeAt(0);
 
                     if (!t[codePoint]) {
                         t[codePoint] = {};
                     }
                     t = t[codePoint];
-                });
+                }
 
-                t._points = points.map(function (p) {
-                    return p || 0;
-                });
-            });
+                t._points = [];
+
+                for (p = 0; p < points.length; p += 1) {
+                    t._points[p] = points[p] || 0;
+                }
+            }
         }
     }
     return tree;
@@ -103,14 +101,26 @@ Hypher.prototype.createTrie = function (patternObject) {
  * @param {!string} str The text to hyphenate.
  * @return {!string} The same text with soft hyphens inserted in the right positions.
  */
-Hypher.prototype.hyphenateText = function (str) {
+Hypher.prototype.hyphenateText = function (str, minLength) {
+    minLength = minLength || 4;
+
     // Regexp("\b", "g") splits on word boundaries,
     // compound separators and ZWNJ so we don't need
     // any special cases for those characters.
     var words = str.split(/\b/g);
-    return words.map(function (word) {
-        return this.hyphenate(word).join('\u00AD');
-    }, this).join('');
+
+    for (var i = 0; i < words.length; i += 1) {
+        if (words[i].indexOf('/') !== -1) {
+            // Don't insert a zero width space if the slash is at the beginning or end
+            // of the text, or right after or before a space.
+            if (i !== 0 && i !== words.length - 1 && !(/\s+\/|\/\s+/.test(words[i]))) {
+                words[i] += '\u200B';
+            }
+        } else if (words[i].length > minLength) {
+            words[i] = this.hyphenate(words[i]).join('\u00AD');
+        }
+    }
+    return words.join('');
 };
 
 /**
@@ -133,21 +143,17 @@ Hypher.prototype.hyphenate = function (word) {
         nodePointsLength,
         m = Math.max,
         trie = this.trie,
-        result = [''],
-        parts,
-        part,
-        hyphenatedParts,
-        partsLength;
+        result = [''];
 
-    if (this.exceptions[word]) {
+    if (this.exceptions.hasOwnProperty(word)) {
         return this.exceptions[word];
     }
 
-    if (word.length <= this.minLength || word.indexOf('\u00AD') !== -1) {
+    if (word.indexOf('\u00AD') !== -1) {
         return [word];
     }
 
-    word = this.anyChar + word + this.anyChar;
+    word = '_' + word + '_';
 
     characters = word.toLowerCase().split('');
     originalCharacters = word.split('');
@@ -187,8 +193,7 @@ Hypher.prototype.hyphenate = function (word) {
     return result;
 };
 
-module.exports = Hypher;
-window['Hypher'] = module.exports;
+module.exports = Hypher;window['Hypher'] = module.exports;
 
 window['Hypher']['languages'] = {};
 }());(function ($) {
