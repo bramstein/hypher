@@ -33,7 +33,8 @@ The language object should contain:
       rightmin: <number>,
 
       // A comma separated list of hyphenation exceptions. Custom hyphenations
-      // can be specified using '\u2027' (hyphenation point) as hyphenation character. (Optional)
+      // can be specified using '\u2027' (hyphenation point) as hyphenation
+      // character. List items are case-insensitive. (Optional)
       exceptions: <string>,
 
       // A patterns object (required)
