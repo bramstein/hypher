@@ -136,7 +136,7 @@ vows.describe('Hypher').addBatch({
     'hyphenate with custom points': {
         topic: function () {
             var l = Object.create(language);
-            l.exceptions = 'bo-otstr-apping, brai-nstorm';
+            l.exceptions = 'bo\u2027otstr\u2027apping, brai\u2027nstorm';
             return new Hypher(l);
         },
         'bootstrapping': hyphenatesTo(['bo', 'otstr', 'apping']),
