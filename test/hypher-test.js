@@ -124,6 +124,15 @@ vows.describe('Hypher').addBatch({
         'bootstrapping': hyphenatesTo(['bootstrapping']),
         'brainstorm': hyphenatesTo(['brainstorm'])
     },
+    'hyphenate with exceptions (mixed case)': {
+      topic: function () {
+          var l = Object.create(language);
+          l.exceptions = 'bootstrapping, brainstorm';
+          return new Hypher(l);
+      },
+      'BoOtstrApPing': hyphenatesTo(['BoOtstrApPing']),
+      'BrainStorm': hyphenatesTo(['BrainStorm'])
+    },
     'hyphenate with exceptions (without space)': {
         topic: function () {
             var l = Object.create(language);
@@ -141,6 +150,15 @@ vows.describe('Hypher').addBatch({
         },
         'bootstrapping': hyphenatesTo(['bo', 'otstr', 'apping']),
         'brainstorm': hyphenatesTo(['brai', 'nstorm'])
+    },
+    'hyphenate with custom points and mixed case': {
+        topic: function () {
+            var l = Object.create(language);
+            l.exceptions = 'bo\u2027otstr\u2027apping, brai\u2027nstorm';
+            return new Hypher(l);
+        },
+        'bOotsTrapPing': hyphenatesTo(['bO', 'otsTr', 'apPing']),
+        'BrainStorm': hyphenatesTo(['Brai', 'nStorm'])
     },
     'hyphenate path like strings': {
         topic: function () {
