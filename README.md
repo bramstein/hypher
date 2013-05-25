@@ -41,7 +41,7 @@ The language object should contain:
       patterns: {}
     }
 
-Language objects are identical to the format used by [Hyphenator.js](http://code.google.com/p/hyphenator/). The only difference is how they are used. Hypher requires you to manually pass a language object, whereas Hyphenator.js automatically "registers" a language object. Language objects can be found in the [patterns repository](https://github.com/bramstein/hyphenation-patterns).
+Language patterns can be found in the [patterns repository](https://github.com/bramstein/hyphenation-patterns).
 
 ##jQuery
 
