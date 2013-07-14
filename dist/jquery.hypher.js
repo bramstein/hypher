@@ -36,7 +36,7 @@ function Hypher(language) {
         exceptions = language['exceptions'].split(/,\s?/g);
 
         for (; i < exceptions.length; i += 1) {
-            this.exceptions[exceptions[i].replace(/-/g, '')] = exceptions[i].split('-');
+            this.exceptions[exceptions[i].replace(/\u2027/g, '').toLowerCase()] = new RegExp(exceptions[i].split('\u2027').join('|'), 'ig');
         }
     }
 }
@@ -145,8 +145,8 @@ Hypher.prototype.hyphenate = function (word) {
         trie = this.trie,
         result = [''];
 
-    if (this.exceptions.hasOwnProperty(word)) {
-        return this.exceptions[word];
+    if (this.exceptions.hasOwnProperty(word.toLowerCase())) {
+        return word.match(this.exceptions[word.toLowerCase()]);
     }
 
     if (word.indexOf('\u00AD') !== -1) {
