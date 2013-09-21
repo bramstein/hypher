@@ -29,8 +29,7 @@ if (typeof module.exports.id === 'string') {
     module.exports.id = [module.exports.id];
 }
 
-module.exports.id.forEach(function (id) {
-    window['Hypher']['languages'][id] = h;
-});
-
+for (var i = 0; i < module.exports.id.length; i += 1) {
+  window['Hypher']['languages'][module.exports.id[i]] = h;
+}
 }());
