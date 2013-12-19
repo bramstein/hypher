@@ -1,6 +1,6 @@
 {
     "name": "hypher",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "description": "A fast and small hyphenation engine",
     "author": "Bram Stein <b.l.stein@gmail.com> (http://www.bramstein.com)",
     "devDependencies": {
