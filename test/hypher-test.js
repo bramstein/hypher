@@ -4,6 +4,7 @@ var Hypher = require('../lib/hypher'),
     data = require('./data.js'),
     words = data.words,
     language = data.language,
+    german = require('./de.js'),
     dictionary = {};
 
 function assertHyphenation(hyphenation) {
@@ -171,5 +172,21 @@ vows.describe('Hypher').addBatch({
         '/root/for/some/path': hyphenatesTextTo(['/root/\u200Bfor/\u200Bsome/\u200Bpath']),
         'a text with a /path/in/it/': hyphenatesTextTo(['a text with a /path/\u200Bin/\u200Bit/']),
         'a text with a /path/in/it/ and more text': hyphenatesTextTo(['a text with a /path/\u200Bin/\u200Bit/ and more text'])
+    },
+    'hyphenate with special characters': {
+        topic: function () {
+            return new Hypher(german);
+        },
+        'müsse': hyphenatesTo(['müs', 'se']),
+        'sozioökonomisch': hyphenatesTo(['so', 'zio', 'öko', 'no', 'misch']),
+        'kostenschätzungen': hyphenatesTo(['kos', 'ten', 'schät', 'zun', 'gen'])
+    },
+    'hyphenate text with special characters': {
+        topic: function () {
+            return new Hypher(german);
+        },
+        'müsse': hyphenatesTextTo(['müs', 'se']),
+        'sozioökonomisch': hyphenatesTextTo(['so', 'zio', 'öko', 'no', 'misch']),
+        'kostenschätzungen': hyphenatesTextTo(['kos', 'ten', 'schät', 'zun', 'gen'])
     }
 }).export(module);
