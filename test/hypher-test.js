@@ -152,6 +152,14 @@ vows.describe('Hypher').addBatch({
         'bootstrapping': hyphenatesTo(['bo', 'otstr', 'apping']),
         'brainstorm': hyphenatesTo(['brai', 'nstorm'])
     },
+    'returns the correct exception': {
+      topic: function () {
+        var l = Object.create(language);
+        l.exceptions = 'inspi\u2027re\u2027rend'
+        return new Hypher(l);
+      },
+      'inspirerend': hyphenatesTo(['inspi', 're', 'rend'])
+    },
     'hyphenate with custom points and mixed case': {
         topic: function () {
             var l = Object.create(language);
