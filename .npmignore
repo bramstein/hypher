@@ -1,5 +1,4 @@
 examples/
-dist/
 Makefile
 lib/jquery.hypher.js
 lib/patterns.browser.pre.js
