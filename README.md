@@ -21,7 +21,7 @@ See `examples/node/` for a full example on how to use Hypher. The `hyphenate` me
     // returns 'Hy|phen|ation is use|ful when cen|ter jus|ti|fy|ing a text.' where `|` is a soft hyphen
     h.hyphenateText('Hyphenation is useful when center justifying a text.');
 
-The `hyphenateText` method takes an optional second parameter `minLength` which is the minimum length a word should have to be considerd for hyphenation (defaults to 4.) Note that an instance of the `Hypher` class should only be created once for each language object.
+The `hyphenateText` method takes an optional second parameter `minLength` which is the minimum length a word should have to be considered for hyphenation (defaults to 4.) Note that an instance of the `Hypher` class should only be created once for each language object.
 
 The language object should contain:
 
