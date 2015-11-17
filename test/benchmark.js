@@ -12,7 +12,7 @@ var result = {};
 
 // Create the dictionary of words we're using to test
 words.forEach(function (word) {
-    var w = word.split('-');
+    var w = word.split('=');
     dictionary[w.join('')] = w;
 });
 
@@ -20,9 +20,7 @@ Hyphenator.config({
     // disable Hyphenator.js cache so we're measuring Hyphenator.js capability to hyphenate, not V8's key lookup
     enablecache: false,
     // Hypher uses a minimum word length of 4, so we'll use that as well.
-    minwordlength: 4,
-    // storing of converted patterns takes some time, so disable it
-    storagetype: 'none'
+    minwordlength: 4
 });
 
 Hyphenator.languages['en'] = language;
@@ -31,8 +29,7 @@ function hypherDictionary() {
     var word;
     
     for (word in dictionary) {
-        //h.hyphenate(word);
-        h.hyphenateText(word); //this actually hyphenates the words, not just returns an array
+        h.hyphenate(word);
     }
 }
 
