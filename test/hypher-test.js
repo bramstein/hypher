@@ -88,6 +88,12 @@ vows.describe('Hypher').addBatch({
         },
         'hyph\u00ADen': hyphenatesTo(['hyph\u00ADen'])
     },
+    'hyphenate text with soft hyphens': {
+        topic: function () {
+            return new Hypher(language);
+        },
+        'hyph\u00ADen charact\u00ADer': hyphenatesTextTo(['hyph', 'en charact', 'er']),
+    },
     'hyphenate with en-dash, hyphen-minus, hyphen, or ZWNJ': {
         topic: function () {
             return new Hypher(language);
