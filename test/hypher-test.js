@@ -5,6 +5,7 @@ var Hypher = require('../lib/hypher'),
     words = data.words,
     language = data.language,
     german = require('./de.js'),
+    finnish = require('./fi.js'),
     dictionary = {};
 
 function assertHyphenation(hyphenation) {
@@ -174,6 +175,13 @@ vows.describe('Hypher').addBatch({
         },
         'bOotsTrapPing': hyphenatesTo(['bO', 'otsTr', 'apPing']),
         'BrainStorm': hyphenatesTo(['Brai', 'nStorm'])
+    },
+    'hyphenates uppercase': {
+      topic: function () {
+        var l = Object.create(finnish);
+        return new Hypher(l);
+      },
+      'LÄHETÄ SÄHKÖPOSTI': hyphenatesTextTo(['LÄ', 'HE', 'TÄ SÄH', 'KÖ', 'POS', 'TI'])
     },
     'hyphenate path like strings': {
         topic: function () {
