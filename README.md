@@ -43,7 +43,7 @@ The language object should contain:
 
 Language patterns can be found in the [patterns repository](https://github.com/bramstein/hyphenation-patterns).
 
-##jQuery
+## jQuery
 
 To use the jQuery plugin include `dist/jquery.hypher.js` in your HTML document together with any number of language pattern files from the `dist/browser` directory in the [patterns repository](https://github.com/bramstein/hyphenation-patterns). It is important that you include `jquery.hypher.js` before any language pattern files.
 
